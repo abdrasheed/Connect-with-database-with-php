@@ -376,35 +376,12 @@ if (strcmp($row['user1'],$n)){
 
 */
 
-
-
 ?>
-    <form method="post">
-        FIRST NAME : <input name="name" type="text"><br><br>
-        PASSWORD : <input name="pass" type="text"><br><br>
-    <input name="submit" type="submit" value="submit"><br><br>
-</form>
 
 <?PHP
-$dataObject = new mysqli ("localhost", "root", "", "person");
-extract($_POST);
-$selectinfo = "SELECT * FROM admin";
-$result = $dataObject->query($selectinfo);
-$row = $result->fetch_assoc();
-if (strcmp($name,$row['name1']) == 0 and strcmp($pass,$row['pass1']) == 0){
-    ?>
-        <form action="admin.php" method="post">
-            <h4>CHOOSE : </h4>
-            <select name="choose">
-                <option>id</option>
-                <option>fname</option>
-            </select><br><br>
-                INPUT: <input name="ky" type="text"><br><br>
-            <input name="submit" type="submit" value="display"><br><br>
-        </form>
-
-<?php
-}else{
-    echo "error";
-}
+mysqli_connect("localhost","root","");
+mysqli_select_db("faceback");
+$que6=mysqli_query("select * from users");
+$rec6=mysqli_fetch_array($que6);
+echo $rec6;
 ?>
