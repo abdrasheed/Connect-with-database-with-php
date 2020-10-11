@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+            integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+            crossorigin="anonymous"
+    />
+    <link
+            href="https://fonts.googleapis.com/css?family=Dosis"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="style.css" />
+    <title>Transfer</title>
+
+    <script>
+        // this function for add display file in screen
+        function updateList(){
+            var input = document.getElementById('file');
+            var output = document.getElementById('fileList');
+            var children = "";
+            for (var i = 0; i < input.files.length; ++i) {
+                children += '<li><p><span class="file_name">'+
+                    input.files.item(i).name + '</span><span>(' +
+                    input.files.item(i).size + 'bytes)</span>' +
+                    '</p><i onclick="deleteX(this)" class="fa delete fa-close"></i></li>';
+            }
+            output.insertAdjacentHTML('beforeend','<ul class="list_files">'+children+'</ul>');
+        }
+
+        // this function for add display folder in screen
+        function selectFolder(e) {
+            var theFiles = e.target.files;
+            var relativePath = theFiles[0].webkitRelativePath;
+            var folder = relativePath.split("/");
+            var output = document.getElementById('fileList');
+
+            output.insertAdjacentHTML('beforeend','<ul class="list_files"><li><p><span class="file_name">'+ folder[0]  + '</span><span>(' + folder.length + 'Items)</span>)' + '</p><i onclick="deleteF(this)" class="fa delete fa-close"></i></li></ul>');
+        }
+
+        // for delete file
+        function deleteX(e){
+            var filesList = document.getElementById('file');
+            var fileToDelete = e.parentElement.querySelectorAll(".file_name")[0].textContent;
+            e.parentElement.remove();
+            const initNewDataList = new DataTransfer();
+            const { files } = filesList;
+            for (var i = 0; i < files.length; i++){
+                const file = files[i]
+                if(file.name !==   fileToDelete){
+                    initNewDataList.items.add(file)
+                    filesList.files = initNewDataList.files;
+
+                }
+            }
+            console.log(filesList.files);
+        }
+
+        // for delete folder from the list
+        function deleteF(e) {
+            var filesList = document.getElementById('folder-input');
+            var fileToDelete = e.parentElement.querySelectorAll(".file_name")[0].textContent;
+            e.parentElement.remove();
+            const initNewDataList = new DataTransfer();
+            const { files } = filesList;
+            for (var i = 0; i < files.length; i++){
+                const file = files[i]
+                if(   file.webkitRelativePath.split("/")[0] !==   fileToDelete ){
+                    initNewDataList.items.add(file);
+                    filesList.files = initNewDataList.files;
+                    document.getElementById("folder-input").value = '';
+                }
+            }
+        }
+        function success() {
+            document.getElementById("forms").style.display = 'none';
+        }
+
+    </script>
+    <script>
+
+    </script>
+  </head>
+  <body class="page1">
+    <!-- Header : start-->
+    <div class="container">
+    <header class="header-home">
+      <img src="logo.png">
+      <h3>Costamer Care : +91 9913606540</h3>
+    </header>
+    <!-- Header : end-->
+    <!-- main : start -->
+    <main class="home-a">
+        <div class="form" id="forms">
+          <form action="" method="" id="form" onsubmit="success()">
+            <div class="file">
+              <div id="fileList">
+                  <ul class="list_files">
+
+                  </ul>
+              </div>
+              <input onchange="updateList()" id="file" class="input_file custom-file-input" type="file" multiple required>
+              <input onchange="selectFolder(event)" id="folder-input" class="input_file custom-folder-input" type="file" mozdirectory msdirectory odirectory directory webkitdirectory multiple required>
+            </div>
+            <div class="email">
+              <input type="text" placeholder="Studio Name" id="studio" required>
+              <input type="number" placeholder="Mobile Number" id="number" required>
+              <textarea placeholder="Message"></textarea>
+            </div>
+            <div class="submit">
+                <input type="submit" value="Transfer" id="submit_button">
+            </div>
+          </form>
+        </div>
+
+        <a href="#">
+        <div class="image">
+          <div>
+            <div class="section_img">
+                <img src="item3.png">
+            </div>
+            <div class="button_image">
+                <h3>Keeping Up Appearances</h3>
+              <p>photographer Yufan Lu explores the darker side of China's booming cosmetic surgery industry</p>
+              <a href="#" class="link_image">Take A Look</a>
+            </div>
+          </div>
+        </div>
+        </a>
+        <a href="#">
+        <div class="image">
+          <div>
+            <div class="section_img">
+                <img src="item7.png">
+            </div>
+            <div class="button_image">
+                <h3>Crank Up To Power Soca</h3>
+                <p>Write Sharine taylor explores the social and historic relevance of carnival and soca</p>
+                <a href="#" class="link_image">Read Now</a>
+            </div>
+          </div>
+        </div>
+        </a>
+    </main>
+        <script>
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("image");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) {myIndex = 1}
+            x[myIndex-1].style.display = "block";
+            setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+      </script>
+    <!-- main : end -->
+    <!-- footer : Start -->
+    <footer class="footer">
+        <a href="https://wa.me/00919913606540" class="whatsapp">
+        <i class="fab fa-whatsapp"> </i>
+      </a>
+    </footer>
+    <!-- footer : end -->
+    </div>
+  </body>
+</html>
