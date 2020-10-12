@@ -23,65 +23,92 @@
 
     <script>
         // this function for add display file in screen
+        // this function for add display file in screen
         function updateList(){
+
             var input = document.getElementById('file');
             var output = document.getElementById('fileList');
             var children = "";
+
             for (var i = 0; i < input.files.length; ++i) {
+
                 children += '<li><p><span class="file_name">'+
                     input.files.item(i).name + '</span><span>(' +
                     input.files.item(i).size + 'bytes)</span>' +
                     '</p><i onclick="deleteX(this)" class="fa delete fa-close"></i></li>';
+
             }
+            // output.innerHTML = '<ul class="list_files">'+children+'</ul>';
             output.insertAdjacentHTML('beforeend','<ul class="list_files">'+children+'</ul>');
+
         }
+
 
         // this function for add display folder in screen
         function selectFolder(e) {
+
             var theFiles = e.target.files;
             var relativePath = theFiles[0].webkitRelativePath;
             var folder = relativePath.split("/");
             var output = document.getElementById('fileList');
 
-            output.insertAdjacentHTML('beforeend','<ul class="list_files"><li><p><span class="file_name">'+ folder[0]  + '</span><span>(' + folder.length + 'Items)</span>)' + '</p><i onclick="deleteF(this)" class="fa delete fa-close"></i></li></ul>');
+            output.insertAdjacentHTML('beforeend','<ul class="list_files"><li><p><span class="file_name">'+ folder[0]  + '</span><span>(' + theFiles.length + ' Items)</span>' + '</p><i onclick="deleteF(this)" class="fa delete fa-close"></i></li></ul>');
+
         }
+
 
         // for delete file
         function deleteX(e){
+
             var filesList = document.getElementById('file');
             var fileToDelete = e.parentElement.querySelectorAll(".file_name")[0].textContent;
             e.parentElement.remove();
             const initNewDataList = new DataTransfer();
             const { files } = filesList;
+
             for (var i = 0; i < files.length; i++){
+
                 const file = files[i]
+
                 if(file.name !==   fileToDelete){
+
                     initNewDataList.items.add(file)
-                    filesList.files = initNewDataList.files;
 
                 }
             }
-            console.log(filesList.files);
+
+            filesList.files = initNewDataList.files;
+
         }
 
-        // for delete folder from the list
-        function deleteF(e) {
+        //console.log( document.getElementById('file').files );
+
+
+        // for delete file
+        function deleteF(e){
+
             var filesList = document.getElementById('folder-input');
             var fileToDelete = e.parentElement.querySelectorAll(".file_name")[0].textContent;
             e.parentElement.remove();
             const initNewDataList = new DataTransfer();
             const { files } = filesList;
+
             for (var i = 0; i < files.length; i++){
+
                 const file = files[i]
+
                 if(   file.webkitRelativePath.split("/")[0] !==   fileToDelete ){
+
                     initNewDataList.items.add(file);
-                    filesList.files = initNewDataList.files;
-                    document.getElementById("folder-input").value = '';
                 }
             }
+
+            filesList.files = initNewDataList.files;
+
         }
         function success() {
             document.getElementById("forms").style.display = 'none';
+            document.getElementById("form_load").style.display = 'block';
         }
 
     </script>
@@ -100,7 +127,7 @@
     <!-- main : start -->
     <main class="home-a">
         <div class="form" id="forms">
-          <form action="" method="" id="form" onsubmit="success()">
+          <form id="form" onsubmit="success()">
             <div class="file">
               <div id="fileList">
                   <ul class="list_files">
@@ -108,18 +135,33 @@
                   </ul>
               </div>
               <input onchange="updateList()" id="file" class="input_file custom-file-input" type="file" multiple required>
-              <input onchange="selectFolder(event)" id="folder-input" class="input_file custom-folder-input" type="file" mozdirectory msdirectory odirectory directory webkitdirectory multiple required>
+              <input onchange="selectFolder(event)" id="folder-input" class="input_file custom-folder-input" type="file" mozdirectory msdirectory odirectory directory webkitdirectory multiple>
             </div>
             <div class="email">
               <input type="text" placeholder="Studio Name" id="studio" required>
               <input type="number" placeholder="Mobile Number" id="number" required>
-              <textarea placeholder="Message"></textarea>
+              <input type="email" placeholder="E-Mail-ID" id="email" required>
             </div>
             <div class="submit">
                 <input type="submit" value="Transfer" id="submit_button">
             </div>
           </form>
         </div>
+        <div class="form form2" id="form_load">
+            <div class="containere">
+                <div id="activeBorder" class="active-border">
+                    <div id="circle" class="circle">
+                        <span class="prec 270" id="prec">29%</span>
+                    </div>
+                </div>
+            </div>
+            <h2>Transferring...</h2>
+            <a href="#" class="sending">Sending 1 file to 1 person</a>
+            <p>288.3 MB of 977.7 MB Uploaded <br> About 2minutes remaingng</p>
+            <div class="cancel">
+                <a href="">Cancel</a>
+            </div>
+         </div>
 
         <a href="#">
         <div class="image">
