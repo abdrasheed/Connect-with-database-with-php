@@ -33,7 +33,7 @@
             for (var i = 0; i < input.files.length; ++i) {
 
                 children += '<li><p><span class="file_name">'+
-                    input.files.item(i).name + '</span><br><span>(' +
+                    input.files.item(i).name + '</span><span>(' +
                     input.files.item(i).size + 'bytes)</span>' +
                     '</p><i onclick="deleteX(this)" class="fa delete fa-close"></i></li>';
 
@@ -104,9 +104,11 @@
             filesList.files = initNewDataList.files;
 
         }
+
         function success() {
             document.getElementById("forms").style.display = 'none';
             document.getElementById("form_load").style.display = 'block';
+            return false;
         }
 
     </script>
@@ -125,20 +127,20 @@
     <!-- main : start -->
     <main class="home-a">
         <div class="form" id="forms">
-          <form id="form" onsubmit="success()">
+          <form id="form" onsubmit="return success()">
             <div class="file">
               <div id="fileList">
                   <ul class="list_files">
 
                   </ul>
               </div>
-              <input onchange="updateList()" id="file" class="input_file custom-file-input" type="file" multiple required>
+              <input onchange="updateList()" id="file" class="input_file custom-file-input" type="file" multiple>
               <input onchange="selectFolder(event)" id="folder-input" class="input_file custom-folder-input" type="file" mozdirectory msdirectory odirectory directory webkitdirectory multiple>
             </div>
             <div class="email">
-              <input type="text" placeholder="Studio Name" id="studio" required>
-              <input type="number" placeholder="Mobile Number" id="number" required>
-              <input type="email" placeholder="E-Mail-ID" id="email" required>
+              <input type="text" placeholder="Studio Name" id="studio">
+              <input type="number" placeholder="Mobile Number" id="number">
+              <input type="email" placeholder="E-Mail-ID" id="email">
             </div>
             <div class="submit">
                 <input type="submit" value="Transfer" id="submit_button">
@@ -147,11 +149,22 @@
         </div>
         <div class="form form2" id="form_load">
             <div class="containere">
-                <div id="activeBorder" class="active-border">
-                    <div id="circle" class="circle">
-                        <span class="prec 270" id="prec">29%</span>
+                    <div class="circular">
+                        <div class="inner"></div>
+                        <div class="outer"></div>
+                        <div class="numb">0%</div>
+                        <div class="circle">
+                            <div class="dot">
+                              <span></span>
+                            </div>
+                            <div class="bar left">
+                              <div class="progress"></div>
+                            </div>
+                            <div class="bar right">
+                              <div class="progress"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
             </div>
             <h2>Transferring...</h2>
             <a href="#" class="sending">Sending 1 file to 1 person</a>
@@ -206,6 +219,18 @@
             setTimeout(carousel, 2000); // Change image every 2 seconds
         }
       </script>
+        <script>
+      const numb = document.querySelector(".numb");
+      let counter = 0;
+      setInterval(()=>{
+          if(counter == 100){
+              clearInterval();
+          }else{
+              counter+=1;
+              numb.textContent = counter + "%";
+          }
+      }, 90);
+    </script>
     <!-- main : end -->
     <!-- footer : Start -->
     <footer class="footer">
