@@ -152,27 +152,34 @@ textarea:focus, input:focus{
 textarea{
 	border: none;
 }
+.list_files ul {
+	width: 100%;
+}
 .list_files li{
 	display: flex;
+	width: 100%;
 	border-radius: 5px;
 	justify-content: space-between;
 	align-items: center;
 	padding-left: 10px;
 	margin-bottom: 5px;
-	background-color: #bcccc2;
+	background-color: #d5d5d5;
 }
+
 .list_files li p,.list_files li i{
 	font-size: 12px;
 }
+
 .list_files li i{
-	color: red;
 	cursor: pointer;
+	color: red;
 	margin-right: 10px;
 }
-.list_files li i p{
-	width:80%;
+.file_name{
+	max-width: 150px;
+
 }
-.list_files li p span{
+.list_files ul li p span{
 	padding-left: 5px;
 	font-size: 9px;
 	color: #3c3c3c;
@@ -248,6 +255,9 @@ footer{
 .form2 .cancel {
 	border-top:1px solid #878787;
 	padding-top:50px ;
+}
+#submit_button {
+	cursor: pointer;
 }
 .form2 .cancel a{
 	background-color: #ffffff;
@@ -337,4 +347,3 @@ footer{
 		margin-top: 50px;
 	}
 }
-

@@ -33,7 +33,7 @@
             for (var i = 0; i < input.files.length; ++i) {
 
                 children += '<li><p><span class="file_name">'+
-                    input.files.item(i).name + '</span><span>(' +
+                    input.files.item(i).name + '</span><br><span>(' +
                     input.files.item(i).size + 'bytes)</span>' +
                     '</p><i onclick="deleteX(this)" class="fa delete fa-close"></i></li>';
 
@@ -80,8 +80,6 @@
             filesList.files = initNewDataList.files;
 
         }
-
-        //console.log( document.getElementById('file').files );
 
 
         // for delete file
