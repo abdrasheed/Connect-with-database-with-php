@@ -108,6 +108,16 @@
         function success() {
             document.getElementById("forms").style.display = 'none';
             document.getElementById("form_load").style.display = 'block';
+            const numb = document.querySelector(".numb");
+            let counter = 0;
+            setInterval(()=>{
+                if(counter == 100){
+                    clearInterval();
+                }else{
+                    counter+=1;
+                    numb.textContent = counter + "%";
+                }
+            }, 80);
             return false;
         }
 
@@ -134,13 +144,13 @@
 
                   </ul>
               </div>
-              <input onchange="updateList()" id="file" class="input_file custom-file-input" type="file" multiple>
+              <input onchange="updateList()" id="file" class="input_file custom-file-input" type="file" multiple required>
               <input onchange="selectFolder(event)" id="folder-input" class="input_file custom-folder-input" type="file" mozdirectory msdirectory odirectory directory webkitdirectory multiple>
             </div>
             <div class="email">
-              <input type="text" placeholder="Studio Name" id="studio">
-              <input type="number" placeholder="Mobile Number" id="number">
-              <input type="email" placeholder="E-Mail-ID" id="email">
+              <input type="text" placeholder="Studio Name" id="studio" required>
+              <input type="number" placeholder="Mobile Number" id="number" required>
+              <input type="email" placeholder="E-Mail-ID" id="email" required>
             </div>
             <div class="submit">
                 <input type="submit" value="Transfer" id="submit_button">
@@ -220,16 +230,7 @@
         }
       </script>
         <script>
-      const numb = document.querySelector(".numb");
-      let counter = 0;
-      setInterval(()=>{
-          if(counter == 100){
-              clearInterval();
-          }else{
-              counter+=1;
-              numb.textContent = counter + "%";
-          }
-      }, 90);
+
     </script>
     <!-- main : end -->
     <!-- footer : Start -->
