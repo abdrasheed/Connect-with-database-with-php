@@ -115,9 +115,11 @@ textarea:focus, input:focus{
 }
 .custom-file-input::-webkit-file-upload-button {
 	visibility: hidden;
+	width: 10px;
 }
 .custom-folder-input::-webkit-file-upload-button {
 	visibility: hidden;
+	width: 10px;
 }
 .custom-file-input::before {
 	content: '+ file';
@@ -150,9 +152,6 @@ textarea:focus, input:focus{
 .list_files{
 	padding: 0;
 	list-style: none;
-}
-textarea{
-	border: none;
 }
 .list_files ul {
 	width: 100%;
@@ -329,6 +328,9 @@ footer{
 	.header-home ,.home-a {
 		flex-direction: column;
 	}
+	.header-home h3 {
+		text-align: center;
+	}
 	.home-a .form {
 		width: 100%;
 		margin-bottom: 50px;
@@ -352,6 +354,13 @@ footer{
 	}
 	.top-150{
 		margin-top: 50px;
+	}
+
+	.file{
+		width: 100%;
+	}
+	.input_file{
+		width: 100%;
 	}
 }
 
