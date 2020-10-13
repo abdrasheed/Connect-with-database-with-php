@@ -106,19 +106,7 @@
         }
 
         function success() {
-            document.getElementById("forms").style.display = 'none';
-            document.getElementById("form_load").style.display = 'block';
-            const numb = document.querySelector(".numb");
-            let counter = 0;
-            setInterval(()=>{
-                if(counter == 100){
-                    clearInterval();
-                }else{
-                    counter+=1;
-                    numb.textContent = counter + "%";
-                }
-            }, 80);
-            return false;
+            window.open("page2.html");
         }
 
     </script>
@@ -137,7 +125,7 @@
     <!-- main : start -->
     <main class="home-a">
         <div class="form" id="forms">
-          <form id="form" onsubmit="return success()">
+          <form id="form" onsubmit="success()">
             <div class="file">
               <div id="fileList">
                   <ul class="list_files">
@@ -157,33 +145,6 @@
             </div>
           </form>
         </div>
-        <div class="form form2" id="form_load">
-            <div class="containere">
-                    <div class="circular">
-                        <div class="inner"></div>
-                        <div class="outer"></div>
-                        <div class="numb">0%</div>
-                        <div class="circle">
-                            <div class="dot">
-                              <span></span>
-                            </div>
-                            <div class="bar left">
-                              <div class="progress"></div>
-                            </div>
-                            <div class="bar right">
-                              <div class="progress"></div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            <h2>Transferring...</h2>
-            <a href="#" class="sending">Sending 1 file to 1 person</a>
-            <p>288.3 MB of 977.7 MB Uploaded <br> About 2minutes remaingng</p>
-            <div class="cancel">
-                <a href="">Cancel</a>
-            </div>
-         </div>
-
         <a href="#">
         <div class="image">
           <div>
